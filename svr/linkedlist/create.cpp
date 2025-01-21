@@ -41,6 +41,16 @@ int lengthOfLL(Node* head){
     return count;
 }
 
+int searchInLinkedList(Node *head, int k) {
+    // Write your code here.
+    Node* temp = head;
+    while(temp){
+        if(temp->data == k) return 1;
+        temp = temp->next;
+    }
+    return 0;
+}
+
 
 
 
