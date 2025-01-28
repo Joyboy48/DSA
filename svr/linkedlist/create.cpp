@@ -51,6 +51,94 @@ int searchInLinkedList(Node *head, int k) {
     return 0;
 }
 
+Node* removeHead(Node* head){
+    if(head == NULL) return head;
+    Node* temp = head;
+    head = head->next;
+    free(temp);
+    return head;
+}
+
+Node* deleteTail(Node* head){
+    if(head == NULL|| head->next == NULL) return head;
+    Node* temp = head;
+    while(temp->next->next != NULL){
+        temp = temp->next;
+    }
+    free(temp->next);
+    temp->next = nullptr;
+
+    return head;
+
+}
+
+Node* deleteKth(Node* head,int k){
+    if(head == NULL) return head;
+    if(k == 1){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+
+    int count = 0;
+    Node* temp = head;
+    Node* prev =NULL;
+
+    while(temp != NULL){
+        count++;
+        if(count == k){
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp -> next; 
+    }
+}
+
+
+Node* deleteElement(Node* head,int element){
+    if(head == NULL) return head;
+    if(head->data == element){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+
+    Node* temp = head;
+    Node* prev =NULL;
+
+    while(temp != NULL){
+        if(temp == element){
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        prev = temp;
+        temp = temp -> next; 
+    }
+    return head;
+}
+
+Node* insertHead(Node* head, int val){
+    Node* temp = new Node(val,head);
+}
+
+Node* insertTail(Node* head,int val){
+      if(head == NULL){
+        return new Node(val);
+      }
+      Node* temp = head;
+      while(temp->next != NULL){
+        temp = temp->next;
+      }
+      Node* newNode = new Node(val);
+      temp->next = newNode;
+
+      return head;
+}
 
 
 
@@ -69,6 +157,9 @@ int main(){
     cout<<endl;
 
     cout<<lengthOfLL(head)<<endl;
+
+
+     
 
 
 
