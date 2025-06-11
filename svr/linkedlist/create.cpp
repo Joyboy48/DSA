@@ -26,7 +26,7 @@ Node* convertArrToLL(vector<int> &arr){
     for(int i=1;i<arr.size();i++){
         Node* temp = new Node(arr[i]);
         mover->next = temp;
-        mover =temp;
+        mover = temp;
     }
     return head;
 }
@@ -51,7 +51,7 @@ int searchInLinkedList(Node *head, int k) {
     return 0;
 }
 
-Node* removeHead(Node* head){
+Node* removeHead(Node* head){        
     if(head == NULL) return head;
     Node* temp = head;
     head = head->next;
@@ -95,6 +95,7 @@ Node* deleteKth(Node* head,int k){
         prev = temp;
         temp = temp -> next; 
     }
+    return head;
 }
 
 
@@ -111,7 +112,7 @@ Node* deleteElement(Node* head,int element){
     Node* prev =NULL;
 
     while(temp != NULL){
-        if(temp == element){
+        if(temp->data == element){
             prev->next = prev->next->next;
             free(temp);
             break;
@@ -140,6 +141,34 @@ Node* insertTail(Node* head,int val){
       return head;
 }
 
+Node* insertAtKth(Node* head,int k,int element){
+    if(head == NULL) {
+        if(k==1) return new Node(element);
+    }else{
+        return head;
+    }
+
+    if(k==1){
+        Node *temp = new Node(element,head);
+        return temp;
+    }
+
+    int count =0;
+    Node *temp = head;
+    while(temp!=NULL){
+        count++;
+
+        if(count == k-1){
+            Node *newNode = new Node(element);
+            newNode->next = temp->next;
+            temp->next = newNode;
+            return head;
+            
+        }
+        temp = temp->next;
+    }
+    return head;
+}
 
 
 int main(){
